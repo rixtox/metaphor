@@ -1,9 +1,9 @@
 {
-	"name"         : "YOUR-PROJECT-NAME-HERE",
-	"description"  : "YOUR PROJECT DESCRIPTION HERE",
-	"author"       : "YOUR NAME <your@emailaddress.com>",
+	"name"         : "Metaphor",
+	"description"  : "An article and topic manage system",
+	"author"       : "RixTox <me@rixtox.com>",
 	"version"      : "0.0.1",
-	"engine"       : "node >= 0.6.6",
+	"engine"       : "node >= 0.10.0",
 
 	"dependencies" : {
 		"coffee-script"         : ">= 1.6.3",
