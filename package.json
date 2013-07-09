@@ -1,0 +1,19 @@
+{
+	"name"         : "YOUR-PROJECT-NAME-HERE",
+	"description"  : "YOUR PROJECT DESCRIPTION HERE",
+	"author"       : "YOUR NAME <your@emailaddress.com>",
+	"version"      : "0.0.1",
+	"engine"       : "node >= 0.6.6",
+
+	"dependencies" : {
+		"coffee-script"         : ">= 1.6.3",
+		"connect-coffee-script" : ">= 0.1.6",
+		"socket.io"             : ">= 0.9.16",
+		"jade"                  : ">= 0.32.0",
+		"stylus"                : ">= 0.33.1",
+		"zappajs"               : ">= 0.4.22"
+	},
+
+	"devDependencies": {
+	}
+}

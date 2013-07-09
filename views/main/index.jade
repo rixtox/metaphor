@@ -1,0 +1,81 @@
+.home
+    #myCarousel.carousel.slide
+        .carousel-inner
+          .item.active
+            img(src='images/home/slide-01.jpg')
+            .container
+              .carousel-caption
+                h1 Compose the VOICE of BGY.
+                p.lead
+                  | You are welcomed to join the VOICE magazine club. Submit your articles and make contribute to the community.
+                a.btn.btn-large.btn-primary.signup-btn(href='#/register') Sign up now
+          .item
+            img(src='images/home/slide-02.jpg')
+            .container
+              .carousel-caption
+                h1 Discover the world.
+                p.lead
+                  | If you like to take photos, here will be the ideal place to show your talents. Take your camera, and be ready to amaze the world.
+                a.btn.btn-large.btn-primary.signin-btn(href='#') Sign in
+          .item
+            img(src='images/home/slide-03.jpg')
+            .container
+              .carousel-caption
+                h1 Share your ideas.
+                p.lead
+                  | The community needs active members to stimulate the progress of creation. Feel free to suggest any ideas to us and help to improve our work.
+                a.btn.btn-large.btn-primary(href='#') Contact us
+        a.left.carousel-control(href='#myCarousel', data-slide='prev') ‹
+        a.right.carousel-control(href='#myCarousel', data-slide='next') ›
+      .container.marketing
+        .row
+          .span4
+            img.img-circle(data-src='holder.js/140x140')
+            h2 Heading
+            p
+              | Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            p
+              a.btn(href='#') View details »
+          .span4
+            img.img-circle(data-src='holder.js/140x140')
+            h2 Heading
+            p
+              | Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+            p
+              a.btn(href='#') View details »
+          .span4
+            img.img-circle(data-src='holder.js/140x140')
+            h2 Heading
+            p
+              | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+            p
+              a.btn(href='#') View details »
+        hr.featurette-divider
+        .featurette
+          img.featurette-image.pull-right(src='images/home/browser-icon-chrome.png')
+          h2.featurette-heading
+            | First featurette headling.
+            span.muted It'll blow your mind.
+          p.lead
+            | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+        hr.featurette-divider
+        .featurette
+          img.featurette-image.pull-left(src='images/home/browser-icon-firefox.png')
+          h2.featurette-heading
+            | Oh yeah, it's that good.
+            span.muted See for yourself.
+          p.lead
+            | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+        hr.featurette-divider
+        .featurette
+          img.featurette-image.pull-right(src='images/home/browser-icon-safari.png')
+          h2.featurette-heading
+            | And lastly, this one.
+            span.muted Checkmate.
+          p.lead
+            | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      script
+        $('.signin-btn').click(function(){
+        $('#nav-signin-btn').dropdown('toggle');
+        return false;
+        });
