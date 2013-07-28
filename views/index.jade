@@ -1,22 +1,82 @@
-!!! 5
-//if lt IE 7
-	html.no-js.ie6.oldie(lang='en')
-//if IE 7
-	html.no-js.ie7.oldie(lang='en')
-//if IE 8
-	html.no-js.ie8.oldie(lang='en') 
-//[if gt IE 8]><!
-html.no-js(lang='en')
-	//<![end if]
-	head
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-		title=title
-		meta(name="description", content=description)
-		meta(name="author", content=author)
-		meta(name="viewport", content='width=device-width, initial-scale=1')
-		script(src='lib/require.js', data-main='scripts/app')
-	body
-		section#app-nav
-		section#app-body
-		section#app-footer
+extends layouts/default
+
+block head
+	title= site.name
+
+block header
+	header.jumbotron.masthead
+		.container
+			h1 Metaphor
+			p
+				| Collaborative, organized, and inspiring media manage system for faster and nicer publishing.
+			p
+				a.btn.btn-primary.btn-large(href='/signup', onclick='_gaq.push([\'_trackEvent\', \'Jumbotron actions\', \'Download\', \'Download 2.3.2\']);') Register Now
+	.bs-docs-social
+		.container
+			p
+				iframe.github-btn(src='http://ghbtns.com/github-btn.html?user=rixtox&repo=metaphor&type=watch&count=true', allowtransparency='true', frameborder='0', scrolling='0', width='80', height='20px')
+				iframe.github-btn(src='http://ghbtns.com/github-btn.html?user=rixtox&repo=metaphor&type=fork&count=true', allowtransparency='true', frameborder='0', scrolling='0', width='80', height='20px')
+				| This is an 
+				a(href='https://github.com/rixtox/metaphor/') open-source project 
+				| .
+
+block body
+	.marketing
+		h1 Introducing Metaphor.
+		p.marketing-byline Need reasons to love Bootstrap? Look no further.
+		.row-fluid
+			.span4
+				img.marketing-img(src='')
+				h2 By nerds, for nerds.
+				p
+					| Built at Twitter by 
+					a(href='http://twitter.com/mdo') @mdo 
+					| and 
+					a(href='http://twitter.com/fat') @fat 
+					| , Bootstrap utilizes 
+					a(href='http://lesscss.org') LESS CSS 
+					| , is compiled via 
+					a(href='http://nodejs.org') Node 
+					| , and is managed through 
+					a(href='http://github.com') GitHub 
+					| to help nerds do awesome stuff on the web.
+			.span4
+				img.marketing-img(src='')
+				h2 Made for everyone.
+				p
+					| Bootstrap was made to not only look and behave great in the latest desktop browsers (as well as IE7!), but in tablet and smartphone browsers via 
+					a(href='./scaffolding.html#responsive') responsive CSS 
+					| as well.
+			.span4
+				img.marketing-img(src='')
+				h2 Packed with features.
+				p
+					| A 12-column responsive 
+					a(href='./scaffolding.html#gridSystem') grid 
+					| , dozens of components, 
+					a(href='./javascript.html') JavaScript plugins 
+					| , typography, form controls, and even a 
+					a(href='./customize.html') web-based Customizer 
+					| to make Bootstrap your own.
+		hr.soften
+		h1 Built with Metaphor.
+		p.marketing-byline
+			| For even more sites built with Bootstrap, 
+			a(href='http://builtwithbootstrap.tumblr.com/', target='_blank') visit the unofficialTumblr 
+			| or 
+			a(href='./getting-started.html#examples') browse the examples 
+			| .
+		.row-fluid
+			ul.thumbnails.example-sites
+				li.span3
+					a.thumbnail(href='http://soundready.fm/', target='_blank')
+						img(src='assets/img/example-sites/soundready.png', alt='SoundReady.fm')
+				li.span3
+					a.thumbnail(href='http://kippt.com/', target='_blank')
+						img(src='assets/img/example-sites/kippt.png', alt='Kippt')
+				li.span3
+					a.thumbnail(href='http://www.gathercontent.com/', target='_blank')
+						img(src='assets/img/example-sites/gathercontent.png', alt='Gather Content')
+				li.span3
+					a.thumbnail(href='http://www.jshint.com/', target='_blank')
+						img(src='assets/img/example-sites/jshint.png', alt='JS Hint')

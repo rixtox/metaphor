@@ -1,0 +1,108 @@
+doctype 5
+html
+  head
+    meta(charset='UTF-8')
+    block head
+      title #{title}
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    // Loading Bootstrap
+    link(rel='stylesheet', href='/vendor/bootstrap/styles/bootstrap.css')
+    link(rel='stylesheet', href='/vendor/bootstrap/styles/bootstrap-docs.css')
+    // Loading Flat UI
+    link(rel='stylesheet', href='/vendor/flatui/flat-ui.css')
+    link(rel='stylesheet', href='/styles/layouts/default.css')
+    block neck
+  body
+    div.navbar.navbar-inverse.navbar-fixed-top
+      div.navbar-inner
+        div.container
+          a.brand(href='/') Metaphor
+          div.nav-collapse
+            ul.nav
+              li: a(href='/article/') Article
+              li: a(href='/topic/') Topic
+              li: a(href='/Users/') Users
+              li: a(href='/profile/') Profile
+            ul.nav.pull-right
+              li: a(href='/signup/') Sign Up
+              li: a(href='/signin/') Login
+    
+    block header
+
+    div.page
+      div.container
+        block body
+    
+    footer
+      div.container
+        div.row-fluid
+          div.span3
+            h3 Technology
+            div.row-fluid
+              div.span6
+                h4 Front-end
+                ul
+                  li Bootstrap
+                  li Designmodo Flat UI
+                  li Backbone
+                  li jQuery
+              div.span6
+                h4 Back-end
+                ul
+                  li Node.js
+                  li Coffee-Script
+                  li Express
+                  li Zappa
+                  li Stylus
+                  li Mongoose
+          div.span3.offset1
+            h3 Metaphor
+            div.row-fluid
+              div.span6
+                address
+                  strong Author
+                  br
+                  ul
+                    li
+                      a(href='http://rixtox.com') RixTox
+                    li
+                      a(href='http://shouya.github.io') Shou Ya
+              div.span6
+                address
+                  strong Orgnization
+                  br
+                  ul
+                    li
+                      a(href='http://bgy.gd.cn', title='Guangdong Country Garden School') GCGS
+                    li
+                      a(href='http://dev.sb.gy') Metacoder
+          div.span3.offset1
+            h3 Contact
+            address
+              strong Address
+              br
+              | Guangdong Country Garden School
+              br
+              abbr(title='Phone') P: 
+              | 0757-26677003
+            address
+              strong Email
+              br
+              a(href='mailto:admin@sb.gy') admin@sb.gy
+        div.text-center
+          p &copy; Metacoder 2013
+    
+    script(src='/vendor/jquery/jquery-1.8.3.min.js')
+    script(src='/vendor/jquery/jquery-ui-1.10.3.custom.min.js')
+    script(src='/vendor/jquery/jquery.ui.touch-punch.min.js')
+    script(src='/vendor/bootstrap/js/bootstrap.min.js')
+    script(src='/vendor/bootstrap/js/bootstrap-select.js')
+    script(src='/vendor/bootstrap/js/bootstrap-switch.js')
+    script(src='/vendor/flatui/flatui-checkbox.js')
+    script(src='/vendor/flatui/flatui-radio.js')
+    script(src='/vendor/jquery/jquery.tagsinput.js')
+    script(src='/vendor/jquery/jquery.placeholder.js')
+    script(src='/vendor/jquery/jquery.stacktable.js')
+    script(src='/scripts/layouts/default.js')
+    
+    block feet

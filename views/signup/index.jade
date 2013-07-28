@@ -1,0 +1,48 @@
+extends ../layouts/default
+
+block head
+  title Sign Up - #{site.name}
+
+block body
+  .row
+    .span6
+      form#sign-up.form-horizontal
+        legend Sign Up
+        .control-group
+          label.control-label(for="reg-username") Username
+          .controls
+            input#reg-username(type="text", name="username", placeholder="Username")
+        .control-group
+          label.control-label(for="reg-password") Password
+          .controls
+            input#reg-password(type="password", name="password", placeholder="Password")
+        .control-group
+          label.control-label(for="reg-email") Email
+          .controls
+            input#reg-email(type="email", name="email", placeholder="Email")
+        .control-group
+          label.control-label(for="reg-first-name") First Name
+          .controls
+            input#reg-first-name(type="text", name="firstname", placeholder="First Name")
+        .control-group
+          label.control-label(for="reg-last-name") Last Name
+          .controls
+            input#reg-last-name(type="text", name="lastname", placeholder="Last Name")
+        .control-group
+          .controls
+            button.btn.btn-primary(type="submit") Sign Up
+    .span6
+      form#sign-in.form-horizontal
+        legend Sign In
+        p Already signed up? Login here.
+        .control-group
+          label.control-label(for="log-username") Username
+          .controls
+            input#log-username(type="text", name="username", placeholder="Username")
+        .control-group
+          label.control-label(for="log-password") Password
+          .controls
+            input#log-password(type="password", name="password", placeholder="Password")
+        .control-group
+          .controls
+            button.btn.btn-primary(type="submit") Sign In
