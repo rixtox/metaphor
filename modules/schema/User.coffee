@@ -1,4 +1,4 @@
-bcrypt = require 'bcrypt'
+crypto = require 'crypto'
 SALT_WORK_FACTOR = 10
 
 exports = module.exports = (app, mongoose) ->
@@ -23,8 +23,8 @@ exports = module.exports = (app, mongoose) ->
 		search: [String]
 
 	userSchema.methods.canPlayRoleOf = (role) ->
-		return true if role == 'admin' and @role.admin
-		return true if role == 'account' and @role.account
+		return true if role == 'admin' and @roles.admin
+		return true if role == 'account' and @roles.account
 		return false
 
 	userSchema.methods.defaultReturnUrl = ->
@@ -33,12 +33,10 @@ exports = module.exports = (app, mongoose) ->
 		returnUrl = '/admin/' if @canPlayRoleOf 'admin'
 		return returnUrl
 
-	userSchema.statics.encryptPassword = (password, done) ->
-		bcrypt.genSalt SALT_WORK_FACTOR, (err, salt) ->
-			return done err if err
-			bcrypt.hash password, salt, (err, hash) ->
-				return done err if err
-				return done null, hash
+	userSchema.statics.encryptPassword = (password) ->
+		return crypto.createHmac(
+			'sha512', app.get('crypto-key')
+		).update(password).digest('hex')
 
 	userSchema.plugin require './plugins/pagedFind'
 	userSchema.index {username: 1}, {unique: true}

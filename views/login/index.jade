@@ -1,0 +1,18 @@
+extends ../layouts/default
+
+block head
+  title Login - #{site.name}
+
+block body
+  .login-screen
+    .login-icon
+      img(src="/images/login/user.png", alt="Welcome to #{site.name}")
+      h4 Welcome to 
+        small #{site.name}
+    form.login-form(method="post", action="/login")
+      .control-group
+        input#reg-username(type="text", name="username", placeholder="Username")
+      .control-group
+        input#reg-password(type="password", name="password", placeholder="Password")
+      button.btn.btn-primary.btn-large.btn-block(type="submit") Login
+      a.login-link(href="/login/forgot") Lost your password?

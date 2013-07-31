@@ -9,7 +9,7 @@ html
     link(rel='stylesheet', href='/vendor/bootstrap/styles/bootstrap.css')
     link(rel='stylesheet', href='/vendor/bootstrap/styles/bootstrap-docs.css')
     // Loading Flat UI
-    link(rel='stylesheet', href='/vendor/flatui/flat-ui.css')
+    link(rel='stylesheet', href='/vendor/flatui/styles/flat-ui.css')
     link(rel='stylesheet', href='/styles/layouts/default.css')
     block neck
   body
@@ -19,13 +19,18 @@ html
           a.brand(href='/') Metaphor
           div.nav-collapse
             ul.nav
-              li: a(href='/article/') Article
-              li: a(href='/topic/') Topic
-              li: a(href='/Users/') Users
-              li: a(href='/profile/') Profile
+              li: a(href='/article') Article
+              li: a(href='/topic') Topic
+              li: a(href='/users') Users
+              li: a(href='/profile') Profile
             ul.nav.pull-right
-              li: a(href='/signup/') Sign Up
-              li: a(href='/signin/') Login
+              if user
+                li: a(href='/account') Welcome, 
+                  u #{user.username}
+                li: a(href='/logout') Logout
+              else
+                li: a(href='/signup') Sign Up
+                li: a(href='/login') Login
     
     block header
 
@@ -52,7 +57,6 @@ html
                   li Node.js
                   li Coffee-Script
                   li Express
-                  li Zappa
                   li Stylus
                   li Mongoose
           div.span3.offset1
@@ -98,8 +102,8 @@ html
     script(src='/vendor/bootstrap/js/bootstrap.min.js')
     script(src='/vendor/bootstrap/js/bootstrap-select.js')
     script(src='/vendor/bootstrap/js/bootstrap-switch.js')
-    script(src='/vendor/flatui/flatui-checkbox.js')
-    script(src='/vendor/flatui/flatui-radio.js')
+    script(src='/vendor/flatui/scripts/flatui-checkbox.js')
+    script(src='/vendor/flatui/scripts/flatui-radio.js')
     script(src='/vendor/jquery/jquery.tagsinput.js')
     script(src='/vendor/jquery/jquery.placeholder.js')
     script(src='/vendor/jquery/jquery.stacktable.js')

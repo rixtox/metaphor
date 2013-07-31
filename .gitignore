@@ -11,6 +11,7 @@ Thumbs.db
 
 # Project Exclusives #
 ######################
+config.coffee
 node_modules
 public/scripts
 public/styles

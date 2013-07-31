@@ -3,15 +3,20 @@
 	"description"  : "An article and topic manage system",
 	"author"       : "RixTox <me@rixtox.com>",
 	"version"      : "0.0.1",
-	"engine"       : "node >= 0.10.0",
+	"engine"       : "CoffeeScript 1.6.x",
 
 	"dependencies" : {
-		"coffee-script"         : ">= 1.6.3",
-		"connect-coffee-script" : ">= 0.1.6",
-		"socket.io"             : ">= 0.9.16",
-		"jade"                  : ">= 0.32.0",
-		"stylus"                : ">= 0.33.1",
-		"zappajs"               : ">= 0.4.22"
+		"coffee-script"         : "1.6.x",
+		"connect-coffee-script" : "0.1.x",
+		"connect-mongo"         : "0.3.x",
+		"crypto"                : "0.0.3",
+		"emailjs"               : "0.3.x",
+		"express"               : "3.3.x",
+		"jade"                  : "0.32.x",
+		"methods"               : "0.0.1",
+		"mongoose"              : "3.6.x",
+		"stylus"                : "0.33.x",
+		"uglify-js"             : "2.3.x"
 	},
 
 	"devDependencies": {

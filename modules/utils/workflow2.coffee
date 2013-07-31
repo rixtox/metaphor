@@ -1,3 +1,21 @@
+###
+Usage
+
+workflow
+  eventTrigger: (arg1, arg2, emit) ->
+    if arg1
+      # trigger next event without argument
+      return 'event2'
+    if arg2
+      # trigger an event tree with arguments
+      return
+        event3: 'successed'
+        event4: 'failed'
+    if emit
+      # just trigger an event without return
+      emit 'event5', {option: 'something'}
+###
+
 exports = module.exports = (req, res) ->
   workflow = new (require('events').EventEmitter)()
 
@@ -31,8 +49,6 @@ exports = module.exports = (req, res) ->
       return workflow.emit 'response'
 
     workflow.on 'response', ->
-      if workflow.outcome.redirect
-        res.redirect workflow.outcome.redirect
       workflow.outcome.success = !workflow.hasErrors()
       res.send workflow.outcome
 

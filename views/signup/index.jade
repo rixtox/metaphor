@@ -4,9 +4,9 @@ block head
   title Sign Up - #{site.name}
 
 block body
-  .row
+  .row.padtop
     .span6
-      form#sign-up.form-horizontal
+      form#sign-up.form-horizontal(method="post", action="/signup")
         legend Sign Up
         .control-group
           label.control-label(for="reg-username") Username
@@ -32,7 +32,7 @@ block body
           .controls
             button.btn.btn-primary(type="submit") Sign Up
     .span6
-      form#sign-in.form-horizontal
+      form#sign-in.form-horizontal(method="post", action="/login")
         legend Sign In
         p Already signed up? Login here.
         .control-group

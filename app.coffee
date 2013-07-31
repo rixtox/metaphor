@@ -1,89 +1,66 @@
-zappa      = require 'zappajs'
-express    = require 'zappajs/node_modules/express'
-mongoStore = require('connect-mongo')(express)
+express    = require 'express'
+mongoStore = require('connect-mongo') express
 coffee     = require 'connect-coffee-script'
 stylus     = require 'stylus'
-passport   = require 'passport'
 path       = require 'path'
 mongoose   = require 'mongoose'
-trace      = require 'coffee-trace'
+config     = require './config'
 
-# Mongodb Connection URI
-MONGODB_URI = process.env.MONGOLAB_URI or
-	process.env.MONGOHQ_URL or
-	'localhost/metaphor'
+app = express()
 
-# Iitialize express server with zappa
-zappa ->
+# Connect Mongodb with Mongoose
+app.db = mongoose.createConnection config.db.url
+app.db.on 'error', (err) ->
+  console.log err.message
+app.db.once 'open', ->
+  console.log 'Mongoose is ready'
 
-	# Connect Mongodb with Mongoose
-	@app.db = mongoose.createConnection MONGODB_URI
-	@app.db.on 'error', (err) ->
-		console.log err.message
-	@app.db.once 'open', ->
-		console.log 'mongoose open for business'
+# Load schemas and modules
+require('./modules') app, mongoose
 
-	# Load schemas and modules
-	require('./models').apply @, [@app, mongoose, passport]
+for key, val of config.app
+  app.set key, val
 
-	# Configure server
-	@disable 'x-powered-by'
-	@configure
-		development: =>
-			@enable           'force compile'
-			@disable          'compress'
-			@app.locals.pretty = true
-			@use              'errorHandler'
-		production:  =>
-			@disable          'force compile'
-			@enable           'compress' 
-			@app.locals.pretty = false
-	@set
-		'port'              : process.env.PORT or 3000
-		'views'             : path.join __dirname, '/views'
-		'view engine'       : 'jade'
-		'strict routing'    : true
-		'project-name'      : 'Metaphor'
-		'company-name'      : 'Metacoder'
-		'admin-email'       : 'me@rixtox.com'
-		'email-from-name'   : 'Metacoder Website'
-		'email-from-address': 'admin@sb.gy'
-		'email-credentials' :
-			user    : 'admin@sb.gy'
-			password: '54c3'
-			host    : 'smtp.live.com'
-			ssl     : true
+# Configure server
+app.configure 'development', ->
+  app.enable 'force compile'
+  app.disable 'compress'
+  app.locals.pretty = true
+  app.use express.errorHandler()
+app.configure 'production', ->
+  app.disable 'force compile'
+  app.enable 'compress' 
+  app.locals.pretty = false
 
-	# Use jade files
-	@app.engine 'jade', require('jade').__express
+# Configure Middlewares
+app.use express.logger 'dev'
+app.use express.bodyParser()
+app.use express.cookieParser()
+app.use express.methodOverride()
+app.use express.session
+  secret: '54c3'
+  store: new mongoStore url: config.db.url
+app.use app.auth.init
+app.use coffee
+  src  : "src"
+  dest : "public"
+  bare : true
+  force: app.get 'force compile'
+app.use stylus.middleware
+  src     : "src"
+  dest    : "public"
+  force   : app.get 'force compile'
+  compress: app.get 'compress'
+app.use express.static path.join(__dirname, 'public')
+app.use require('./modules/middlewares/slash')
+app.use app.router
+app.use require('./views/http').http500
 
-	# Configure Middlewares
-	@use
-		logger: 'dev'
-		favicon: path.join(__dirname, 'public/favicon.ico')
-		,'bodyParser'
-		,'methodOverride'
-		,'cookieParser'
-		,session:
-			secret: '54c3'
-			store: new mongoStore url: MONGODB_URI
-		,coffee(
-			src  : "src"
-			dest : "public"
-			bare : true
-			force: @get 'force compile'
-		)
-		,stylus.middleware(
-			src     : "src"
-			dest    : "public"
-			force   : @get 'force compile'
-			compress: @get 'compress'
-		)
-		,passport.initialize()
-		,passport.session()
-		,static: path.join(__dirname, 'public')
-		,require('./views/http/index').http500
+# Set locals
+app.locals.site =
+  name: app.get 'project-name'
 
-	# Set locals
-	@app.locals.site =
-		name: @app.get 'project-name'
+# Load Route Controllers
+require('./routes') app
+
+app.listen 3000
