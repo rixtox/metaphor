@@ -11,7 +11,7 @@ exports = module.exports =
     workflow = new req.app.util.Workflow req, res
     workflow.add
       validate: ->
-        req.app.auth.prepare app.body
+        req.app.auth.prepare req.body
         if !req.body.username
           workflow.outcome.errfor.username = 'required'
         else if ! /^[a-zA-Z0-9\-\_]+$/.test req.body.username
