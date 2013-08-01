@@ -1,2 +1,2 @@
 exports.init = (req, res) ->
-  res.redirect '/'
+  res.render 'account/index'

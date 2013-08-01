@@ -6,14 +6,17 @@
 	"engine"       : "CoffeeScript 1.6.x",
 
 	"dependencies" : {
+		"async"                 : "~0.2.9",
 		"coffee-script"         : "1.6.x",
+		"colors"                : "~0.6.0",
 		"connect-coffee-script" : "0.1.x",
 		"connect-mongo"         : "0.3.x",
-		"crypto"                : "0.0.3",
+		"crypto"                : "~0.0.3",
 		"emailjs"               : "0.3.x",
 		"express"               : "3.3.x",
+		"express-validator"     : "0.7.x",
 		"jade"                  : "0.32.x",
-		"methods"               : "0.0.1",
+		"methods"               : ">=0.0.1",
 		"mongoose"              : "3.6.x",
 		"stylus"                : "0.33.x",
 		"uglify-js"             : "2.3.x"

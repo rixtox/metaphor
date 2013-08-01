@@ -1,8 +1,8 @@
 exports = module.exports = (app) ->
   app.auth = auth =
     authenticate: (username, password, fn) ->
-      conditions = isActive: 'yes'
-      if username.indexOf '@' == -1
+      conditions = {}
+      if username.indexOf('@') == -1
         conditions.username = username
       else
         conditions.email = username
@@ -14,10 +14,12 @@ exports = module.exports = (app) ->
           return fn null, user
         else
           return fn 'Invalid password'
+
   auth.init = (req, res, next) ->
     req.isAuthenticated = ->
       return true if req.session.user
       return false
+    req.auth = auth
     req.authenticate = auth.authenticate
     req.user = req.app.locals.user = req.session.user
     req.login = (user, fn) ->
@@ -28,4 +30,11 @@ exports = module.exports = (app) ->
       req.session.destroy ->
         res.redirect '/'
     next()
+
+  auth.prepare = (info) ->
+    if info.username
+      info.username = info.username.toLowerCase()
+    if info.email
+      info.email = info.email.toLowerCase()
+
   return auth

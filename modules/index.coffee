@@ -20,5 +20,7 @@ exports = module.exports = (app, mongoose) ->
   ###     Load Application Modules     ###
   ########################################
 
-  require('./auth') app
   require('./utils') app
+  require('./auth') app
+  require('./validator') app
+  require './welcome'

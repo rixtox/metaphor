@@ -1,6 +1,7 @@
 express    = require 'express'
 mongoStore = require('connect-mongo') express
 coffee     = require 'connect-coffee-script'
+validator  = require 'express-validator'
 stylus     = require 'stylus'
 path       = require 'path'
 mongoose   = require 'mongoose'
@@ -10,10 +11,6 @@ app = express()
 
 # Connect Mongodb with Mongoose
 app.db = mongoose.createConnection config.db.url
-app.db.on 'error', (err) ->
-  console.log err.message
-app.db.once 'open', ->
-  console.log 'Mongoose is ready'
 
 # Load schemas and modules
 require('./modules') app, mongoose
@@ -41,6 +38,7 @@ app.use express.session
   secret: '54c3'
   store: new mongoStore url: config.db.url
 app.use app.auth.init
+# app.use validator
 app.use coffee
   src  : "src"
   dest : "public"
@@ -54,7 +52,7 @@ app.use stylus.middleware
 app.use express.static path.join(__dirname, 'public')
 app.use require('./modules/middlewares/slash')
 app.use app.router
-app.use require('./views/http').http500
+app.use require('./routes/http').http500
 
 # Set locals
 app.locals.site =
@@ -63,4 +61,5 @@ app.locals.site =
 # Load Route Controllers
 require('./routes') app
 
-app.listen 3000
+app.listen app.get 'port'
+console.log "Metaphor is running at localhost:#{app.get 'port'}", 'success'

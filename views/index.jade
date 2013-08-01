@@ -10,7 +10,10 @@ block header
 			p
 				| Collaborative, organized, and inspiring media manage system for faster and nicer publishing.
 			p
-				a.btn.btn-primary.btn-large(href='/signup', onclick='_gaq.push([\'_trackEvent\', \'Jumbotron actions\', \'Download\', \'Download 2.3.2\']);') Register Now
+				if user
+					a.btn.btn-primary.btn-large(href='/topic') Browse Topics
+				else
+					a.btn.btn-primary.btn-large(href='/signup') Register Now
 	.bs-docs-social
 		.container
 			p
@@ -70,13 +73,13 @@ block body
 			ul.thumbnails.example-sites
 				li.span3
 					a.thumbnail(href='http://soundready.fm/', target='_blank')
-						img(src='assets/img/example-sites/soundready.png', alt='SoundReady.fm')
+						img(src='', alt='SoundReady.fm')
 				li.span3
 					a.thumbnail(href='http://kippt.com/', target='_blank')
-						img(src='assets/img/example-sites/kippt.png', alt='Kippt')
+						img(src='', alt='Kippt')
 				li.span3
 					a.thumbnail(href='http://www.gathercontent.com/', target='_blank')
-						img(src='assets/img/example-sites/gathercontent.png', alt='Gather Content')
+						img(src='', alt='Gather Content')
 				li.span3
 					a.thumbnail(href='http://www.jshint.com/', target='_blank')
-						img(src='assets/img/example-sites/jshint.png', alt='JS Hint')
+						img(src='', alt='JS Hint')

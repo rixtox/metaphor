@@ -25,3 +25,4 @@ exports = module.exports = (app) ->
 	# app.get  '/login/reset',        require('./login/reset').init
 	# app.get  '/login/reset/:token', require('./login/reset').init
 	# app.post '/login/reset/:token', require('./login/reset').set
+	app.get '*', require('./http').http404
