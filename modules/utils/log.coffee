@@ -1,12 +1,8 @@
-require './colors'
 ##################################################
 ###              An useful logger              ###
 ##################################################
 ###
 How to use
-  First you need to have colors module loaded cor-
-  rectly. You can use a js file to require that m-
-  odule, and require that js file before this.
   You can use console.log everywhere with this ut-
   ility. Just pass a schema identifier at the end 
   of the arguments. The logger would select the s-
@@ -47,6 +43,8 @@ Register prefix
     , '\u261e'.cyan
 ###
 
+require 'colors'
+util = require 'util'
 
 log = console.log
 schemas =
@@ -79,29 +77,37 @@ prefixs =
 
 logger = (msg, args...) ->
   schema = 'default'
+  prefix = prefixs.default
   if typeof msg == 'string' and args.length
     tmp = args[args.length - 1]
     if typeof tmp == 'string' and schemas[tmp]
       schema = args.pop()
-  prefix = prefixs[schema] ? prefixs.default
-  msg = schemas[schema] msg
-  if msg instanceof Array
-    log prefix, msg..., args...
-  else
-    log prefix, msg, args...
+    if prefixs[schema]?
+      prefix = prefixs[schema]
+    msg = schemas[schema] msg, args
+    if args? and args instanceof Array
+      for val, i in args
+        args[i] = util.inspect val
+    if msg instanceof Array
+      return log prefix, msg..., args...
+  return log prefix, msg, args...
 
 logger.setSchema = (key, val) ->
   if typeof key == 'object'
     for k, v of key
-      schemas[k] = v
+      do (k, v) ->
+        schemas[k] = v
   else if typeof key == 'string'
-    schemas[key] = val
+    do (val) ->
+      schemas[key] = val
 
 logger.setPrefix = (key, val) ->
   if typeof key == 'object'
     for k, v of key
-      prefixs[k] = v
+      do (k, v) ->
+        prefixs[k] = v
   else if typeof key == 'string'
-    prefixs[key] = val
+    do (val) ->
+      prefixs[key] = val
 
 console.log = exports = module.exports = logger
