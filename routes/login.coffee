@@ -12,13 +12,18 @@ exports = module.exports =
     workflow = new req.app.util.Workflow req, res
     workflow.add
       validate: ->
-        req.app.auth.prepare req.body
-        if !req.body.username
-          workflow.outcome.errfor.username = 'required'
-        if !req.body.password
-          workflow.outcome.errfor.password = 'required'
+        req.check('username').notEmpty().isUsername()
+        req.check('password').notEmpty()
+        req.check('email').notEmpty().isEmail()
+
+        workflow.addErrFor req.validationErrors(true)
         if workflow.hasErrors()
           return 'response'
+        return 'filter'
+
+      filter: ->
+        req.filter('username').toLowerCase()
+        req.filter('email').toLowerCase()
         return 'attenptLogin'
 
       attenptLogin: ->

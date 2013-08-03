@@ -23,3 +23,16 @@ exports.app =
     'host'    : 'smtp.example.com'
     'port'    : 465
     'ssl'     : true
+  'userInfo':
+    'departments':
+      'dp': 'Diploma Program'
+      'alevel': 'Alevel'
+      'ify': 'IFY'
+      'myp': 'MYP'
+      'pyp': 'PYP'
+    'grade':
+      'min': 1
+      'max': 12
+    'class':
+      'min': 1
+      'max': 20

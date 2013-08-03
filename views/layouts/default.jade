@@ -5,6 +5,7 @@ html
     block head
       title #{title}
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel="icon", type="image/x-icon", href="/favicon.ico")
     // Loading Bootstrap
     link(rel='stylesheet', href='/vendor/bootstrap/styles/bootstrap.css')
     link(rel='stylesheet', href='/vendor/bootstrap/styles/bootstrap-docs.css')
@@ -26,7 +27,7 @@ html
             ul.nav.pull-right
               if user
                 li: a(href='/account') Welcome, 
-                  u #{user.username}
+                  u #{user.info.displayName}
                 li: a(href='/logout') Logout
               else
                 li: a(href='/signup') Sign Up
@@ -107,6 +108,6 @@ html
     script(src='/vendor/jquery/jquery.tagsinput.js')
     script(src='/vendor/jquery/jquery.placeholder.js')
     script(src='/vendor/jquery/jquery.stacktable.js')
-    script(src='/scripts/layouts/default.js')
+    //- script(src='/scripts/layouts/default.js')
     
     block feet

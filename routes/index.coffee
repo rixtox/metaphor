@@ -19,7 +19,7 @@ exports = module.exports = (app) ->
 	app.post '/signup',  require('./signup').signup
 	app.post '/login',   require('./login').login
 	app.get  '/account', require('./account').init
-	app.get  '/logout',  require('./logout/index').init
+	app.get  '/logout',  require('./logout').init
 	# app.get  '/login/forgot',       require('./login/forgot').init
 	# app.post '/login/forgot',       require('./login/forgot').send
 	# app.get  '/login/reset',        require('./login/reset').init

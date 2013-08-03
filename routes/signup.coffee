@@ -1,29 +1,41 @@
 exports = module.exports =
   init: (req, res) ->
+    infoSetting = req.app.get('userInfo')
     # Check if logged in
     if req.isAuthenticated()
       res.redirect req.session.defaultReturnUrl
     else
       res.render 'signup/index',
-        oauthMessage: ''
+        info: infoSetting
 
   signup: (req, res) ->
+    infoSetting = req.app.get('userInfo')
     workflow = new req.app.util.Workflow req, res
     workflow.add
       validate: ->
-        req.app.auth.prepare req.body
-        if !req.body.username
-          workflow.outcome.errfor.username = 'required'
-        else if ! /^[a-zA-Z0-9\-\_]+$/.test req.body.username
-          workflow.outcome.errfor.username = 'only use letters, numbers, \'-\', \'_\''
-        if !req.body.email
-          workflow.outcome.errfor.email = 'required'
-        else if !/^[a-zA-Z0-9\-\_\.\+]+@[a-zA-Z0-9\-\_\.]+\.[a-zA-Z0-9\-\_]+$/.test req.body.email
-          workflow.outcome.errfor.email = 'invalid email format'
-        if !req.body.password
-          workflow.outcome.errfor.password = 'required'
+        req.check('username').notEmpty().isUsername()
+        req.check('password').notEmpty()
+        req.check('email').notEmpty().isEmail()
+        req.check(['info', 'displayName']).isDisplayName()
+        req.check(['info', 'firstName']).isName()
+        req.check(['info', 'lastName']).isName()
+        req.check(['info', 'mentor']).isName()
+        req.check(['info', 'department']).isDepartment()
+        req.check(['info', 'grade']).isInt()
+          .min(infoSetting.grade.min)
+          .max(infoSetting.grade.max)
+        req.check(['info', 'class']).isInt()
+          .min(infoSetting.class.min)
+          .max(infoSetting.class.max)
+
+        workflow.addErrFor req.validationErrors(true)
         if workflow.hasErrors()
           return 'response'
+        return 'filter'
+
+      filter: ->
+        req.filter('username').toLowerCase()
+        req.filter('email').toLowerCase()
         return 'duplicateUsernameCheck'
 
       duplicateUsernameCheck: ->
@@ -59,6 +71,14 @@ exports = module.exports =
             req.body.username
             req.body.email
           ]
+          info:
+            displayName: req.body.info.displayName
+            firstName: req.body.info.firstName
+            lastName: req.body.info.lastName
+            department: req.body.info.department
+            grade: req.body.info.grade
+            class: req.body.info.class
+            mentor: req.body.info.mentor
         req.app.db.models.User.create filedsToSet, (err, user) ->
           if err
             return workflow.emit exception, err

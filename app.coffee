@@ -13,7 +13,7 @@ app = express()
 app.db = mongoose.createConnection config.db.url
 
 # Load schemas and modules
-require('./modules') app, mongoose
+require('./modules') app, mongoose, validator
 
 for key, val of config.app
   app.set key, val
@@ -38,7 +38,8 @@ app.use express.session
   secret: '54c3'
   store: new mongoStore url: config.db.url
 app.use app.auth.init
-# app.use validator
+app.use validator.middleware
+app.use validator()
 app.use coffee
   src  : "src"
   dest : "public"
@@ -49,7 +50,8 @@ app.use stylus.middleware
   dest    : "public"
   force   : app.get 'force compile'
   compress: app.get 'compress'
-app.use express.static path.join(__dirname, 'public')
+app.use express.static(path.join __dirname, 'public')
+app.use express.favicon(path.join __dirname, 'public/favicon.ico')
 app.use require('./modules/middlewares/slash')
 app.use app.router
 app.use require('./routes/http').http500

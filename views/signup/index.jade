@@ -6,6 +6,21 @@ block head
 block body
   .row.padtop
     .span6
+      form#sign-in.form-horizontal(method="post", action="/login")
+        legend Sign In
+        p Already signed up? Login here.
+        .control-group
+          label.control-label(for="log-username") Username
+          .controls
+            input#log-username(type="text", name="username", placeholder="Username")
+        .control-group
+          label.control-label(for="log-password") Password
+          .controls
+            input#log-password(type="password", name="password", placeholder="Password")
+        .control-group
+          .controls
+            button.btn.btn-primary(type="submit") Sign In
+    .span6
       form#sign-up.form-horizontal(method="post", action="/signup")
         legend Sign Up
         .control-group
@@ -23,54 +38,36 @@ block body
         .control-group
           label.control-label(for="reg-display-name") Display Name
           .controls
-            input#reg-display-name(type="text", name="displayName", placeholder="Display Name")
+            input#reg-display-name(type="text", name="info[displayName]", placeholder="Display Name")
         .control-group
           label.control-label(for="reg-first-name") First Name
           .controls
-            input#reg-first-name(type="text", name="firstName", placeholder="First Name")
-        .control-group
-          label.control-label(for="reg-middle-name") Middle Name
-          .controls
-            input#reg-middle-name(type="text", name="middleName", placeholder="Middle Name")
+            input#reg-first-name(type="text", name="info[firstName]", placeholder="First Name")
         .control-group
           label.control-label(for="reg-last-name") Last Name
           .controls
-            input#reg-last-name(type="text", name="lastName", placeholder="Last Name")
+            input#reg-last-name(type="text", name="info[lastName]", placeholder="Last Name")
+        .control-group
+          label.control-label(for="reg-mentor") Mentor
+          .controls
+            input#reg-mentor(type="text", name="info[mentor]", placeholder="Mentor")
         .control-group
           label.control-label(for="reg-department") Department
           .controls
-            select#reg-department(name="department", placeholder="Department")
-              option(value="dp") Diploma Program
-              option(value="alevel") Alevel
-              option(value="ify") IFY
-              option(value="myp") MYP
-              option(value="pyp") PYP
+            select#reg-department(name="info[department]", placeholder="Department")
+              each str, val in info.departments
+                option(value=val)= str
         .control-group
           label.control-label(for="reg-grade") Grade
           .controls
-            input#reg-grade(type="text", name="grade", placeholder="Grade")
+            input#reg-grade(type="text", name="info[grade]", placeholder="Grade")
         .control-group
           label.control-label(for="reg-class") Class
           .controls
-            input#reg-class(type="text", name="class", placeholder="Class")
+            input#reg-class(type="text", name="info[class]", placeholder="Class")
         .control-group
           .controls
             button.btn.btn-primary(type="submit") Sign Up
-    .span6
-      form#sign-in.form-horizontal(method="post", action="/login")
-        legend Sign In
-        p Already signed up? Login here.
-        .control-group
-          label.control-label(for="log-username") Username
-          .controls
-            input#log-username(type="text", name="username", placeholder="Username")
-        .control-group
-          label.control-label(for="log-password") Password
-          .controls
-            input#log-password(type="password", name="password", placeholder="Password")
-        .control-group
-          .controls
-            button.btn.btn-primary(type="submit") Sign In
 
 block feet
   script(src='/scripts/signup/index.js')

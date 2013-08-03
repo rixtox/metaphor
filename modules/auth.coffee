@@ -31,10 +31,4 @@ exports = module.exports = (app) ->
         res.redirect '/'
     next()
 
-  auth.prepare = (info) ->
-    if info.username
-      info.username = info.username.toLowerCase()
-    if info.email
-      info.email = info.email.toLowerCase()
-
   return auth

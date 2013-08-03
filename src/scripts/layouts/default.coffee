@@ -26,7 +26,7 @@ String.prototype.repeat = (num) ->
 			$(@).toogleClass 'todo-done'
 
 		# Custom Select
-		$('select[name="herolist"]').selectpicker
+		$('select').selectpicker
 			style: 'btn-primary'
 			menuStyle: 'dropdown-inverse'
 

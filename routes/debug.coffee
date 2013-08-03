@@ -1,4 +1,7 @@
 exports = module.exports = (req, res) ->
-  # req.authenticate 'rix', '54c3', (err, user) ->
-  #   req.login user, ->
-      res.send [Object.keys(req), req.domain, req.url, req.originalUrl,  req.session, req.user]
+  req.filter('name').firstCap()
+  req.assert('email', 'valid email required').isEmail()
+  req.assert('name').isName()
+  req.assert('test').notEmpty()
+  console.log 'Validator Errors:'.cyan, req.validationErrors()
+  res.send [Object.keys(req), req.query, req.validationErrors(), req.param('test')]

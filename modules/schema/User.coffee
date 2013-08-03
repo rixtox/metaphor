@@ -18,10 +18,10 @@ exports = module.exports = (app, mongoose) ->
       displayName: String
       firstName: String
       lastName: String
-      middleName: String
       department: String
       grade: String
       class: String
+      mentor: String
       studentId: String
       birth: Date
     isActive: Boolean

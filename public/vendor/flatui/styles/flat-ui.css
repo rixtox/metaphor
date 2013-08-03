@@ -1119,7 +1119,6 @@ h6 {
 }
 .select {
   display: inline-block;
-  margin-bottom: 10px;
 }
 [class*="span"] > .select[class*="span"] {
   margin-left: 0;
@@ -1141,9 +1140,6 @@ h6 {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-.select .btn {
-  width: 220px;
 }
 .select .btn.btn-huge .filter-option {
   left: 20px;
@@ -1175,13 +1171,9 @@ h6 {
   right: 13px;
 }
 .select .btn .filter-option {
-  height: 26px;
-  left: 13px;
   overflow: hidden;
-  position: absolute;
-  right: 33px;
   text-align: left;
-  top: 10px;
+  margin-right: 25px;
 }
 .select .btn .caret {
   position: absolute;
@@ -2424,7 +2416,7 @@ textarea[class*="span"] {
 }
 .dropdown-menu li > a {
   color: rgba(52, 73, 94, 0.75);
-  padding: 6px 15px 8px;
+  padding: 7px 15px;
   text-decoration: none;
   *zoom: 1;
   -webkit-transition: background-color 0.25s;
@@ -2552,7 +2544,7 @@ textarea[class*="span"] {
 .dropdown-inverse li > a {
   border-radius: 2px;
   color: #ffffff;
-  padding: 5px 11px 7px;
+  padding: 6px 11px;
 }
 .dropdown-inverse li > a:hover,
 .dropdown-inverse li > a:active,

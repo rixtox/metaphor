@@ -27,6 +27,12 @@ exports = module.exports = (req, res) ->
       return true
     return false
 
+  workflow.addErrFor = (errfor) ->
+    if errfor?
+      for key, val of errfor
+        do (key, val) ->
+          workflow.errfor[key] = val
+
   workflow.add = (works) ->
     for key, val of works
       task = ((key, val, args) ->
@@ -53,8 +59,6 @@ exports = module.exports = (req, res) ->
       return workflow.emit 'response'
 
     workflow.on 'response', ->
-      if workflow.outcome.redirect
-        res.redirect workflow.outcome.redirect
       workflow.outcome.success = !workflow.hasErrors()
       res.send workflow.outcome
 

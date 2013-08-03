@@ -1,5 +1,4 @@
-exports = module.exports = (app, mongoose) ->
-
+exports = module.exports = (app, mongoose, validator) ->
   ########################################
   ###       Load Mongoose Schemas      ###
   ########################################
@@ -22,5 +21,5 @@ exports = module.exports = (app, mongoose) ->
 
   require('./utils') app
   require('./auth') app
-  require('./validator') app
+  require('./validator') validator, app
   require './welcome'
