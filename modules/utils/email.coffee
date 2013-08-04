@@ -1,4 +1,9 @@
-exports = module.exports = (req, res, options) ->
+nodemailer = require 'nodemailer'
+
+exports = module.exports = (req, res, options, callback) ->
+	smtpTransport = nodemailer.createTransport 'SMTP'
+	, req.app.get 'email-credentials'
+
 	renderText = (callback) ->
 		res.render options.textPath
 		, options.locals
@@ -19,33 +24,10 @@ exports = module.exports = (req, res, options) ->
 	renderers.push renderText if options.textPath
 	renderers.push renderHtml if options.htmlPath
 
-	require('async').parallel renderers, (err, results) ->
-		return options.error "Email template render failed. #{err}" if err
+	require('async').parallel renderers, (err, result) ->
+		return callback "Email template render failed. #{err}" if err
 
-		attachment = []
+		options.mail.text = options.text
+		options.mail.html = options.html
 
-		if options.html
-			attachment.push
-				data: options.html
-				alternative: true
-
-		if options.attachment
-			for i in options.attachment
-				attachment.push options.attachment[i]
-
-		emailjs = require 'emailjs/email'
-		emailer = emailjs.server.connect req.app.get 'email-credentials'
-
-		emailer.send
-			from: options.from
-			to: options.to
-			cc: options.cc
-			bcc: options.bcc
-			subject: options.subject
-			text: options.text
-			attachment: attachment
-			, (err, message) ->
-				if err and options.error
-					return options.error "Email failed to send. #{err}"
-				if options.success
-					return options.success message
+		smtpTransport.sendMail options.mail, callback

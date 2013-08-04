@@ -105,9 +105,10 @@ exports = module.exports =
 
       sendWelcomeEmail: ->
         req.app.util.email req, res,
-          from: "#{req.app.get('email-from-name')} <#{req.app.get('email-from-address')}>"
-          to: req.body.email
-          subject: "Your #{req.app.get('project-name')} Account"
+          mail:
+            from: "#{req.app.get('email-from-name')} <#{req.app.get('email-from-address')}>"
+            to: req.body.email
+            subject: "Your #{req.app.get('project-name')} Account"
           textPath: 'signup/email-text'
           htmlPath: 'signup/email-html'
           locals:
@@ -115,11 +116,9 @@ exports = module.exports =
             email: req.body.email
             loginURL: "http://#{req.headers.host}/login/"
             projectName: req.app.get 'project-name'
-          success: (message) ->
-            # return 'logUserIn'
-          error: (err) ->
-            console.log "Error Sending Welcome Email: #{err}", 'error'
-            # return 'logUserIn'
+          , (err, msg) ->
+            console.log err, 'error' if err
+            console.log 'Email sent:', msg, 'success'
         return 'logUserIn'
 
       logUserIn: ->

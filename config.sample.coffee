@@ -17,12 +17,17 @@ exports.app =
   'x-powered-by'      : false
   'email-from-name'   : 'Metacoder Website'
   'email-from-address': 'admin@example.com'
+  # SMTP Config for Nodemailer
+  # See More on http://www.nodemailer.com/
   'email-credentials' :
-    'user'    : 'admin'
-    'password': 'password'
-    'host'    : 'smtp.example.com'
-    'port'    : 465
-    'ssl'     : true
+    "auth":
+      'user'    : 'admin'
+      'pass'    : 'password'
+    # "service"         : 'Gmail'
+    'host'            : 'smtp.example.com'
+    'port'            : 465
+    'secureConnection': true
+    "ignoreTLS"       : false
   'userInfo':
     'departments':
       'dp': 'Diploma Program'
