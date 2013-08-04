@@ -33,7 +33,6 @@ exports = module.exports = (validator, app) ->
       validator.Filter.prototype[newFilter] = fn
     else
       for key, val of newFilter
-        console.log key, val
         validator.addFilter key, val
 
   validator.middleware = (req, res, next) ->
