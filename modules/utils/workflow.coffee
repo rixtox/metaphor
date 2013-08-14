@@ -1,12 +1,12 @@
 # Set logger schemas and prefixs
-console.log.setSchema
+logger.setSchema
   workflowAdded: (msg) ->
     return ['Workflow:'.bold.cyan, 'Added'.green, msg]
   workflowEmit: (msg) ->
     return ['Workflow:'.bold.cyan, 'Emit'.blue, msg]
   workflowReceive: (msg) ->
     return ['Workflow:'.bold.cyan, 'Receive'.magenta, msg]
-console.log.setPrefix
+logger.setPrefix
   workflowAdded: '\u271a'.cyan
   workflowEmit: '\u261e'.cyan
   workflowReceive: '\u261e'.cyan
@@ -38,10 +38,10 @@ exports = module.exports = (req, res) ->
       task = ((key, val, args) ->
         return ->
           if logging
-            console.log key, 'workflowEmit'
+            logger key, 'workflowEmit'
           result = val args...
           if logging and typeof result == 'string'
-            console.log result, 'workflowReceive'
+            logger result, 'workflowReceive'
           switch typeof result
             when 'string'
               workflow.emit result
@@ -51,7 +51,7 @@ exports = module.exports = (req, res) ->
       ) key, val, arguments
       workflow.on key, task
       if logging
-        console.log key, 'workflowAdded'
+        logger key, 'workflowAdded'
 
   if req and res
     workflow.on 'exception', (err) ->

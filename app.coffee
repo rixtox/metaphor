@@ -14,6 +14,6 @@ require('./routes') app
 
 # Start application
 app.listen app.get 'port'
-console.log "Metaphor is running 
+logger "Metaphor is running 
 at localhost:#{app.get 'port'}"
 , 'success'

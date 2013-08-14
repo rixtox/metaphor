@@ -3,5 +3,5 @@ exports = module.exports = (req, res) ->
   req.assert('email', 'valid email required').isEmail()
   req.assert('name').isName()
   req.assert('test').notEmpty()
-  console.log 'Validator Errors:'.cyan, req.validationErrors()
+  logger 'Validator Errors:'.cyan, req.validationErrors()
   res.send [Object.keys(req), req.query, req.validationErrors(), req.param('test')]

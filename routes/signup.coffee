@@ -117,8 +117,8 @@ exports = module.exports =
             loginURL: "http://#{req.headers.host}/login/"
             projectName: req.app.get 'project-name'
           , (err, msg) ->
-            console.log err, 'error' if err
-            console.log 'Email sent:', msg, 'success'
+            logger err, 'error' if err
+            logger 'Email sent:', msg, 'success'
         return 'logUserIn'
 
       logUserIn: ->

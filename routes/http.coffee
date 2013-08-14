@@ -10,5 +10,5 @@ exports.http500 = (err, req, res, next) ->
   if req.xhr
     res.send error: 'Something went wrong.'
   else
-    console.log err.stack
+    logger err.stack
     res.render 'http/500'
