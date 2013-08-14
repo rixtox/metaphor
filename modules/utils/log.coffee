@@ -110,4 +110,8 @@ logger.setPrefix = (key, val) ->
     do (val) ->
       prefixs[key] = val
 
-console.log = exports = module.exports = logger
+global.logger =
+console.log =
+exports =
+module.exports =
+logger

@@ -1,19 +1,19 @@
-exports = module.exports = (app, mongoose, validator) ->
+exports = module.exports = (app) ->
   ########################################
   ###       Load Mongoose Schemas      ###
   ########################################
 
   # General Sub-docs Schemas
-  require('./schema/Note') app, mongoose
-  require('./schema/Status') app, mongoose
-  require('./schema/StatusLog') app, mongoose
-  require('./schema/Category') app, mongoose
+  require('./schema/Note') app
+  require('./schema/Status') app
+  require('./schema/StatusLog') app
+  require('./schema/Category') app
 
   # User System Schemas
-  require('./schema/User') app, mongoose
-  require('./schema/Admin') app, mongoose
-  require('./schema/AdminGroup') app, mongoose
-  require('./schema/Account') app, mongoose
+  require('./schema/User') app
+  require('./schema/Admin') app
+  require('./schema/AdminGroup') app
+  require('./schema/Account') app
 
   ########################################
   ###     Load Application Modules     ###
@@ -21,5 +21,11 @@ exports = module.exports = (app, mongoose, validator) ->
 
   require('./utils') app
   require('./auth') app
-  require('./validator') validator, app
-  require './welcome'
+  require('./validator') app
+  require('./welcome')
+
+  ########################################
+  ###   Load Application Middlewares   ###
+  ########################################
+
+  require('./middleware') app

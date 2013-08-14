@@ -1,4 +1,6 @@
-exports = module.exports = (app, mongoose) ->
+mongoose = require 'mongoose'
+
+exports = module.exports = (app) ->
 	statusLogSchema = new mongoose.Schema
 		id:
 			type: String

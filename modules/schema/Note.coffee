@@ -1,4 +1,6 @@
-exports = module.exports = (app, mongoose) ->
+mongoose = require 'mongoose'
+
+exports = module.exports = (app) ->
 	# console.log mongoose
 	noteSchema = new mongoose.Schema
 		data:
