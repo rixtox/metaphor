@@ -1,6 +1,6 @@
 mongoose = require 'mongoose'
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
 	statusSchema = new mongoose.Schema
 		_id: String
 		pivot:

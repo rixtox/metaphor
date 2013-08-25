@@ -11,7 +11,7 @@ logger.setPrefix
   workflowEmit: '\u261e'.cyan
   workflowReceive: '\u261e'.cyan
 
-exports = module.exports = (req, res) ->
+module.exports = (req, res) ->
   workflow = new (require('events').EventEmitter)()
 
   logging = req.app.get('env') == 'development'

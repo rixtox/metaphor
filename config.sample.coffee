@@ -3,8 +3,12 @@ mongoose = require 'mongoose'
 path = require 'path'
 
 settings =
-  'port'              : process.env.PORT or 3000
-  'views'             : path.join __dirname, '/views'
+  'port'              : process.env.PORT or 
+  'app-path'          : __dirname
+  'dest-path'         : path.join __dirname, 'public'
+  'public-path'       : path.join __dirname, 'public'
+  'source-path'       : path.join __dirname, 'src'
+  'source-uri'        : '/'
   'view engine'       : 'jade'
   'strict routing'    : true
   'mongo-uri'         : process.env.MONGOLAB_URI or
@@ -42,7 +46,7 @@ settings =
       'min': 1
       'max': 20
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
   # Add configuration to app
   for key, val of settings
     app.set key, val

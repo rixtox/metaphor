@@ -1,4 +1,4 @@
-exports = module.exports = (schema) ->
+module.exports = (schema) ->
 	schema.statics.pagedFind = (options, cb) ->
 		options.filters = {} unless options.filters
 		options.keys = '' unless options.keys

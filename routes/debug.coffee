@@ -1,4 +1,4 @@
-exports = module.exports = (req, res) ->
+module.exports = (req, res) ->
   req.filter('name').firstCap()
   req.assert('email', 'valid email required').isEmail()
   req.assert('name').isName()

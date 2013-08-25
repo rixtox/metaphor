@@ -1,19 +1,12 @@
-express = require 'express'
+express = require   'express'
+app     = new        express()
 
-# Create application
-app = new express()
-
-# Configure app
-require('./config') app
-
-# Load schemas and modules
+require('./config')  app
 require('./modules') app
+require('./routes')  app
 
-# Load Route Controllers
-require('./routes') app
+app.listen app.get  'port'
 
-# Start application
-app.listen app.get 'port'
-logger "Metaphor is running 
-at localhost:#{app.get 'port'}"
+logger "Server is running at 
+localhost:#{app.get 'port'}"
 , 'success'

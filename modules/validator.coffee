@@ -1,6 +1,6 @@
 validator = require 'express-validator'
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
 
   validator.addValidator = (newValid) ->
     for key, val of newValid

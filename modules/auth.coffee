@@ -1,4 +1,4 @@
-exports = module.exports = (app) ->
+module.exports = (app) ->
   app.auth = auth =
     authenticate: (username, password, fn) ->
       conditions = {}

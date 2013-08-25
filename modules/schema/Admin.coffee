@@ -1,6 +1,6 @@
 mongoose = require 'mongoose'
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
 	adminSchema = new mongoose.Schema
 		user:
 			id:

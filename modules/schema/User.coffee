@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 crypto = require 'crypto'
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
   userSchema = new mongoose.Schema
     username:
       type: String

@@ -1,6 +1,6 @@
 nodemailer = require 'nodemailer'
 
-exports = module.exports = (req, res, options, callback) ->
+module.exports = (req, res, options, callback) ->
 	smtpTransport = nodemailer.createTransport 'SMTP'
 	, req.app.get 'email-credentials'
 

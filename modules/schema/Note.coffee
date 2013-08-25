@@ -1,6 +1,6 @@
 mongoose = require 'mongoose'
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
 	noteSchema = new mongoose.Schema
 		data:
 			type: String

@@ -1,11 +1,10 @@
 express    = require 'express'
 mongoStore = require('connect-mongo') express
-coffee     = require 'connect-coffee-script'
 validator  = require 'express-validator'
-stylus     = require 'stylus'
+compiler   = require './compiler'
 path       = require 'path'
 
-exports = module.exports = (app) ->
+module.exports = (app) ->
 
   # Configure Middlewares
   app.use express.logger 'dev'
@@ -19,20 +18,9 @@ exports = module.exports = (app) ->
   app.use app.auth.init
   app.use validator.middleware
   app.use validator()
-  app.use coffee
-    src  : "src"
-    dest : "public"
-    bare : true
-    force: app.get 'force compile'
-  app.use stylus.middleware
-    src     : "src"
-    dest    : "public"
-    force   : app.get 'force compile'
-    compress: app.get 'compress'
-  app.use express.static path.join __dirname
-    , '../../public'
-  app.use express.favicon path.join __dirname
-    , '../../public/favicon.ico'
+  app.use compiler app
+  app.use express.static app.get 'public-path'
+  app.use express.favicon path.join app.get('public-path'), 'favicon.ico'
   app.use require('./slash')
   app.use app.router
   app.use require('../../routes/http').http500

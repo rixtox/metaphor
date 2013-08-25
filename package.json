@@ -1,24 +1,34 @@
 {
-	"name"         : "Metaphor",
-	"description"  : "An article and topic manage system",
-	"author"       : "RixTox <me@rixtox.com>",
-	"version"      : "0.0.1",
-	"engine"       : "CoffeeScript 1.6.x",
-
-	"dependencies" : {
-		"async"                 : "~0.2.9",
-		"coffee-script"         : "~1.6.3",
-		"colors"                : "~0.6.0",
-		"connect-coffee-script" : "~0.1.6",
-		"connect-mongo"         : "~0.3.3",
-		"crypto"                : "~0.0.3",
-		"express"               : "~3.3.4",
-		"express-validator"     : "~0.7.0",
-		"jade"                  : "~0.32.0",
-		"methods"               : "~0.0.1",
-		"mongoose"              : "~3.6.14",
-		"nodemailer"            : "~0.5.2",
-		"stylus"                : "~0.33.1",
-		"uglify-js"             : "~2.3.6"
-	}
+  "name"         : "Metaphor",
+  "description"  : "An article and topic manage system",
+  "author"       : "RixTox <me@rixtox.com>",
+  "version"      : "0.0.1",
+  "engine"       : "CoffeeScript ~1.6.3",
+  "dependencies": {
+    "async"            : "~0.2.9",
+    "coffee-script"    : "~1.6.3",
+    "colors"           : "~0.6.0",
+    "connect-mongo"    : "~0.3.3",
+    "crypto"           : "~0.0.3",
+    "express"          : "~3.3.4",
+    "express-validator": "~0.7.0",
+    "jade"             : "~0.32.0",
+    "methods"          : "~0.0.1",
+    "mongoose"         : "~3.6.14",
+    "nodemailer"       : "~0.5.2",
+    "stylus"           : "~0.33.1",
+    "uglify-js"        : "~2.4.0"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "coffee-script": "~1.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RixTox/metaphor.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RixTox/metaphor/issues"
+  }
 }
