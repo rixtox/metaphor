@@ -8,9 +8,7 @@ production = (options, callback) ->
     options = {}
   fs.exists options.dest_path, (exists) ->
     return development options, callback unless exists && !options.compile
-    fs.readFile options.dest_path, 'utf8', (err, data) ->
-      return callback err if err
-      callback null, build_result data, exists: true, options
+    callback null, exists: true, static: true
 
 development = (options, callback) ->
   if typeof options == 'function'
@@ -55,7 +53,7 @@ module.exports = (params) ->
       return callback null, exists: false
     options =
       env: args.env
-      compile: args.compile || args.env == 'production'
+      compile: args.compile || args.env != 'production'
       compress: args.compress || args.env == 'production'
       compiler: params.compiler
       headers: params.headers

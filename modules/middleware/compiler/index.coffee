@@ -28,7 +28,8 @@ middleware = (req, res, next) ->
     return res.send err if err
     for result in results
       if result.exists
-        return result.send res
+        return result.send res unless result.static
+        return next()
     next()
 
 module.exports = (app) ->
